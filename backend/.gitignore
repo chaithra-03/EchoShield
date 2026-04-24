@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ChromaDB
+chroma_db/
+
+# Uploads
+uploads/
+
+# Logs
+*.log

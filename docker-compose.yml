@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/vector_db:/app/vector_db
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    networks:
+      - echoshield_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+    restart: unless-stopped
+    networks:
+      - echoshield_net
+    depends_on:
+      - backend
+
+networks:
+  echoshield_net:
+    driver: bridge

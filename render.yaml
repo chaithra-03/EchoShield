@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: synthmind-backend
+    env: python
+    repo: https://github.com/yourusername/synthmind # Replace with actual repo
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # Set this in Render dashboard
+      - key: ALLOWED_ORIGINS
+        value: '["https://your-frontend-vercel-url.vercel.app"]' # Add your production frontend URL here
+      - key: VECTOR_DB_DIR
+        value: "/mnt/data/qdrant_db"
+    disk:
+      name: qdrant-data
+      mountPath: /mnt/data
+      sizeGB: 1
