@@ -14,12 +14,15 @@ class Settings(BaseSettings):
     # API Keys
     GEMINI_API_KEY: str = ""
 
-    # CORS — allow both localhost variants
+    # CORS — localhost + deployed frontends
     ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:3001",
+        "https://*.vercel.app",
     ]
+    # Extra origins from env (comma-separated)
+    EXTRA_ORIGINS: str = ""
 
     # Vector DB (path used for numpy-based store)
     VECTOR_DB_DIR: str = "./vector_db"
