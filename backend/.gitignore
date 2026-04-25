@@ -11,7 +11,8 @@ venv/
 dist/
 build/
 
-# ChromaDB
+# Vector Database (Qdrant embedded)
+vector_db/
 chroma_db/
 
 # Uploads
